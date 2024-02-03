@@ -12,7 +12,7 @@ namespace WebApi.Controllers;
 
 public class OrdersRegisterController : ControllerBase
 {
-    [HttpGet(Name = "GetWeatherForecast"))]
+    [HttpGet()]
     [Consumes(MediaTypeNames.Application.Json)]
     [SwaggerOperation(Summary = "Shows order register entry of given id",
                 Description = "Shows order registration data according given id")]
@@ -24,7 +24,7 @@ public class OrdersRegisterController : ControllerBase
         return Ok(response);
     }
 
-    [HttpGet()]
+    [HttpGet("All")]
     public IActionResult GetAll()
     {
         string response = "Cia visas sarasas irasu ";
