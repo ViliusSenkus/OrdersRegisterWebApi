@@ -197,6 +197,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependenciesInjection.cs" />
+    <Compile Include="DTOs\Requests\RequestCreate.cs" />
+    <Compile Include="DTOs\Requests\RequestUpdate.cs" />
+    <Compile Include="DTOs\Responses\ResponseEntries.cs" />
+    <Compile Include="DTOs\Responses\ResponseEntry.cs" />
     <Compile Include="OrdersRegisterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -209,6 +213,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DTOs\Errors\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

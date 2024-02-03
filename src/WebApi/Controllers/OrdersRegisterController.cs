@@ -1,4 +1,7 @@
-﻿using Domain.Entities;
+﻿using Application;
+using Application.DTOs.Requests;
+using Application.DTOs.Responses;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
@@ -12,6 +15,12 @@ namespace WebApi.Controllers;
 
 public class OrdersRegisterController : ControllerBase
 {
+    private readonly OrdersRegisterService _service;
+    public OrdersRegisterController(OrdersRegisterService service)
+    {
+        _service = service;
+    }
+
     [HttpGet()]
     [Consumes(MediaTypeNames.Application.Json)]
     [SwaggerOperation(Summary = "Shows order register entry of given id",
@@ -20,35 +29,35 @@ public class OrdersRegisterController : ControllerBase
     [SwaggerResponse(StatusCodes.Status500InternalServerError)]
     public IActionResult GetById([FromQuery] int regid)
     {
-        string response = "iskomas irasas - Nr." + regid;
+        ResponseEntry response = _service.GetById(regid);
         return Ok(response);
     }
 
     [HttpGet("All")]
     public IActionResult GetAll()
     {
-        string response = "Cia visas sarasas irasu ";
+        ResponseEntries response = _service.GetAll();
         return Ok(response);
     }
 
     [HttpPost()]
-    public IActionResult Create([FromBody] OrdersRegisterEntity changedEntity)
+    public IActionResult Create([FromBody] RequestCreate createDto)
     {
-        string response = changedEntity.CountingMethod;
+        ResponseEntry response = _service.Create(createDto);
         return Created("get", response);
     }
 
     [HttpPut()]
-    public IActionResult Update([FromQuery] int regid, [FromBody] OrdersRegisterEntity changedEntity)
+    public IActionResult Update([FromBody] RequestUpdate updateDto)
     {
-        string response = changedEntity.CountingMethod;
+        ResponseEntry response = _service.Update(updateDto);
         return Created("get", response);
     }
 
     [HttpDelete()]
     public IActionResult delete([FromQuery] int regid)
     {
-        string response = "iskomas irasas - Nr." + regid;
+        _service.Delete(regid);
         return NoContent();
     }
 }

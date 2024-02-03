@@ -4,18 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Application.DTOs.Requests
 {
-    public class OrdersRegisterEntity
+    public class RequestUpdate
     {
         public int Id { get; set; }
         public bool ContractingWorks { get; set; }
-        public string Executor {  get; set; }
+        public string Executor { get; set; }
         public bool BusinessClient { get; set; }
         public string CountingMethod { get; set; }
         public bool VipClient { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public DateTime DeletedAt { get; set;}
     }
 }
