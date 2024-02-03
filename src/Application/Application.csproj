@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\Domain.csproj">
+    <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{fda21b95-8c54-4e1c-8938-647a67a7c6d2}</Project>
       <Name>Domain</Name>
     </ProjectReference>

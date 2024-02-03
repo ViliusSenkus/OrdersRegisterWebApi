@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\Application\Application.csproj">
+    <ProjectReference Include="..\Application\Application.csproj">
       <Project>{6e200668-b46d-4dba-99a5-8bc71d383ab4}</Project>
       <Name>Application</Name>
     </ProjectReference>
