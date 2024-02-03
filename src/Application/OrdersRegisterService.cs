@@ -1,55 +1,40 @@
 ﻿using Application.DTOs.Requests;
 using Application.DTOs.Responses;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using Application.Interfaces;
+using System.Threading.Tasks;
 
 namespace Application
 {
     public class OrdersRegisterService
     {
-        public ResponseEntry GetById(int id)
+        private readonly IOrdersRegisterRepository _repository;
+        public OrdersRegisterService(IOrdersRegisterRepository repository)
         {
-            return new ResponseEntry()
-            {
-                Id = id,
-                Executor = "ieskomas irasas - Nr." + id
-            };
-        }
-        public ResponseEntries GetAll()
-        {
-            List<ResponseEntry> list = new List<ResponseEntry>();
-            for (int x = 0; x < 3; x++)
-            {
-                list.Add(new ResponseEntry()
-                {
-                    Id = x,
-                    Executor = "ieskomas irasas - Nr." + x
-                });
-            }
-
-            return new ResponseEntries() { Entries = list };
-        }
-        public ResponseEntry Create(RequestCreate createDto)
-        {
-            return new ResponseEntry()
-            {
-                Id = 555,
-                Executor = createDto.Executor
-            };
-        }
-        public ResponseEntry Update(RequestUpdate updateDto)
-        {
-            return new ResponseEntry()
-            {
-                Id = updateDto.Id,
-                Executor = updateDto.Executor
-            };
+            _repository = repository;
         }
 
-        public void Delete(int id)
+        public async Task<ResponseEntry> GetById(int id)
         {
-            
+            return await _repository.GetById(id);
+        }
+        public async Task<ResponseEntries> GetAll()
+        {
+            var list = await _repository.GetAll();
+            return new ResponseEntries() {Entries = list};
+        }
+        public async Task<ResponseEntry> Create(RequestCreate createDto)
+        {
+            return await _repository.Create(createDto);
+        }
+        public async Task<ResponseEntry> Update(RequestUpdate updateDto)
+        {
+            return await _repository.Update(updateDto);
+        }
+
+        public async Task Delete(int id)
+        {
+           await _repository.Delete(id);
         }
     }
 }

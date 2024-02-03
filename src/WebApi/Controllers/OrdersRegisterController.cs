@@ -27,37 +27,37 @@ public class OrdersRegisterController : ControllerBase
                 Description = "Shows order registration data according given id")]
     [SwaggerResponse(StatusCodes.Status200OK, "Successfully returned order rigister entry", typeof(OrdersRegisterEntity), MediaTypeNames.Application.Json)]
     [SwaggerResponse(StatusCodes.Status500InternalServerError)]
-    public IActionResult GetById([FromQuery] int regid)
+    public async Task<IActionResult> GetById([FromQuery] int regid)
     {
-        ResponseEntry response = _service.GetById(regid);
+        ResponseEntry response = await _service.GetById(regid);
         return Ok(response);
     }
 
     [HttpGet("All")]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        ResponseEntries response = _service.GetAll();
+        ResponseEntries response = await _service.GetAll();
         return Ok(response);
     }
 
     [HttpPost()]
-    public IActionResult Create([FromBody] RequestCreate createDto)
+    public async Task<IActionResult> Create([FromBody] RequestCreate createDto)
     {
-        ResponseEntry response = _service.Create(createDto);
+        ResponseEntry response = await _service.Create(createDto);
         return Created("get", response);
     }
 
     [HttpPut()]
-    public IActionResult Update([FromBody] RequestUpdate updateDto)
+    public async Task<IActionResult> Update([FromBody] RequestUpdate updateDto)
     {
-        ResponseEntry response = _service.Update(updateDto);
+        ResponseEntry response = await _service.Update(updateDto);
         return Created("get", response);
     }
 
     [HttpDelete()]
-    public IActionResult delete([FromQuery] int regid)
+    public async Task<IActionResult> Delete([FromQuery] int regid)
     {
-        _service.Delete(regid);
+        await _service.Delete(regid);
         return NoContent();
     }
 }
