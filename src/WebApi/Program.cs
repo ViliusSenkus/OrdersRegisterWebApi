@@ -1,9 +1,11 @@
+using Application;
 using Infrastructure;
 using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddWebApi();
+builder.Services.AddApplicationLayer();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
