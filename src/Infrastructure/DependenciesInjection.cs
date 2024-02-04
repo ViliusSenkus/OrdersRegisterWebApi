@@ -5,6 +5,7 @@ using System.Data;
 using DbUp;
 using System;
 using Application.Interfaces;
+using MySql.Data;
 
 namespace Infrastructure
 {
@@ -14,7 +15,7 @@ namespace Infrastructure
         {
             services.AddScoped<IOrdersRegisterRepository, OrdersRegisterRepository>();
 
-            string dbConnectonString = config.GetConnectionString("postgres")
+            string dbConnectonString = config.GetConnectionString("PostgreSql")
                     ?? throw new Exception("Connection string cannot be found.");
 
             services.AddScoped<IDbConnection>((serviceProvider) => new NpgsqlConnection(dbConnectonString));
